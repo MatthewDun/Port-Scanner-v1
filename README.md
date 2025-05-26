@@ -7,4 +7,4 @@ addresses to a target, with the goal of finding an active port.
 
 HOW TO USE:
 
-
+For linux OS, compile in the directory wherever this repo is added to with the command "g++ Port_scanner", then to run the script input "./a.out"
