@@ -7,10 +7,14 @@ addresses to a target, with the goal of finding an active port.
 
 HOW TO USE:
 
-For linux OS, compile in the directory wherever this repo is added to with the command "g++ Port_scanner", then to run the script input "./a.out"
+Start the venv using source venv/bin/activate
+start the flask app using python app.py
+go to the url and scan some ports!
 
 
 Refrences:
 https://en.wikipedia.org/wiki/Port_scanner
+
 https://www.paloaltonetworks.com/cyberpedia/what-is-a-port-scan#:~:text=A%20port%20scanner%20is%20an,to%20confirm%20network%20security%20policies.
+
 https://cplusplus.com/articles/o2N36Up4/
