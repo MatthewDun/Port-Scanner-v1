@@ -7,9 +7,9 @@ addresses to a target, with the goal of finding an active port.
 
 HOW TO USE:
 
-Start the venv using source venv/bin/activate
-start the flask app using python app.py
-go to the url and scan some ports!
+-Start the venv using source venv/bin/activate.
+-start the flask app using python app.py.
+-go to the url and scan some ports!.
 
 
 Refrences:
