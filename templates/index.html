@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Port Scanner</title>
+
+        <style>
+            body {
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                background-color: #000000;
+            }
+
+            .boxed {
+                border: 2px solid #333;
+                background-color: #ffffff;
+                width: fit-content;
+                box-shadow: 2px 2px 10px rgba(253, 253, 253, 0.1);
+                margin: 1rem auto;
+                text-align: center;
+            }
+
+            .bigbutton {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <h1 class="boxed">Welcome to my Port Scanner!</h1>
+
+        <h1 style="color: white">Enter an Ip Address and Ill see what ports are open...</h1>
+
+        <div style="text-align:center;">
+            <input type="text" id="Ipaddress" class="bigbutton" placeholder="Enter IP Address...">
+        </div>
+
+        <h1 style="color: white">Ports open...</h1>
+
+
+        <script>
+            document.getElementById("Ipaddress").addEventListener("keydown", function(event) {
+                if (event.key === "Enter") {
+                    const text = event.target.value;
+                    fetch('/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ Ipaddress: text })
+                    })
+                    .then(res => res.text())
+                    .then(data => console.log(data));
+                }
+            });
+        </script>
+
+    </body>
+</html>
