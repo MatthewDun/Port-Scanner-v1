@@ -11,7 +11,11 @@ def home():
 def submit():
         data = request.get_json()
         Ip = data.get("Ipaddress")
+        print("Received data:", data)
         ports = scan_ports(Ip)
+
+        for x in ports:
+                print(x)
 
         return jsonify({"open_ports": ports})
 

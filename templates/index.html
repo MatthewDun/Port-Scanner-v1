@@ -21,7 +21,7 @@
 
             .bigbutton {
                 padding: 15px 30px;
-                font-size: 1rem;
+                font-size: 0.75rem;
             }
 
         </style>
@@ -32,24 +32,51 @@
 
         <h1 style="color: white">Enter an Ip Address and Ill see what ports are open...</h1>
 
+        <h1 style="font-size: 1rem; color: white; text-align: center;">Example: Try 1.1.1.1</h1>
+
+
+
         <div style="text-align:center;">
             <input type="text" id="Ipaddress" class="bigbutton" placeholder="Enter IP Address...">
         </div>
 
         <h1 style="color: white">Ports open...</h1>
 
+        <div id="results"></div>
+
+        <div style="text-align:center;">
+            <img src="{{url_for('static',filename='images/cg.jpg')}}" alt="My pic" width="600">
+        </div>
+
 
         <script>
             document.getElementById("Ipaddress").addEventListener("keydown", function(event) {
                 if (event.key === "Enter") {
-                    const text = event.target.value;
+
+                    const text = document.getElementById('Ipaddress').value;
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = "<p style='color:yellow;'>Checking address " + text + "...</p>";
+
                     fetch('/submit', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ Ipaddress: text })
+                    })                    
+                    .then(response => response.json())
+                    .then(data => {
+                        const ports = data.open_ports;
+
+                        if (ports.length === 0) {
+                            resultsDiv.innerHTML = "<p style='color:yellow;'>No open ports found.</p>";
+                        } else {
+                            resultsDiv.innerHTML = "<h3 style='color:white;'>Open Ports</h3><ul style='color:white;'>" +
+                                ports.map(port => `<li>${port}</li>`).join('') + "</ul>";
+    }
                     })
-                    .then(res => res.text())
-                    .then(data => console.log(data));
+                    .catch(error => {
+                        console.error('Error:', error);
+                        document.getElementById('results').innerHTML = "<p style='color:red;'>Error contacting server.</p>";
+                    });
                 }
             });
         </script>
