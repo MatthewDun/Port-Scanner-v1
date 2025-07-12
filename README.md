@@ -1,5 +1,5 @@
 # Port-Scanner-v1
-This is a port scanner created by Matthew Dunnavant. 
+This is a port scanner web app created by Matthew Dunnavant, built with Flask. 
 
 A port scanner is an application that probes a server/host for open ports.
 It starts with sending a client requests to a range of server port 
